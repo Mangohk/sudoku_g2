@@ -1,0 +1,19 @@
+[package]
+name = "sudoku-generator"
+version = "0.1.0"
+edition = "2021"
+description = "Generate uniquely solvable 9×9 Sudoku puzzles and store them without isomorphic duplicates"
+readme = "README.md"
+
+[dependencies]
+clap = { version = "=4.5.23", features = ["derive"] }
+rand = "0.8"
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+
+# The canonical-form search and DLX digger are tight loops. Debug builds
+# stay usable for `cargo test` and `cargo run` without a full release build.
+[profile.dev]
+opt-level = 1
